@@ -2,10 +2,10 @@
 
 > 主要分享Python类技术干货，包括不限于Python技术、Web开发、爬虫、数据分析等，当然还有不定期的工具干货分享。
 
-<iframe height=500 width=500 src="https://github.com/python3xxx/Python-Every-Day/image_/python3xxx.gif">
+<iframe height=500 width=500 src="https://github.com/python3xxx/Python-Every-Day/blob/master/image_/python3xx.gif">
 
 
-![Image text](https://github.com/python3xxx/Python-Every-Day/image_/qr_code.jpg)
+![Image text](https://github.com/python3xxx/Python-Every-Day/blob/master/image_/qr_code.jpg)
 
 
 
