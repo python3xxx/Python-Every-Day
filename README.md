@@ -20,6 +20,10 @@
 [005、Python中的可变参数](#005python中的可变参数)
 
 [006、Python中的super()用法](#006python中的super用法)
+
+[007、Python中的深浅拷贝](#007python中的深浅拷贝)
+
+[008、Python中文件的读取](#008python中文件的读取)
       
       
  --
