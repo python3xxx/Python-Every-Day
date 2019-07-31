@@ -1,8 +1,26 @@
+### 欢迎大家关注我的公众号『Python3X』，扫描下方二维码( 或微信搜索：python3xxx)。即可关注。
+
+> 主要分享Python类技术干货，包括不限于Python技术、Web开发、爬虫、数据分析等，当然还有不定期的工具干货分享。
+
+<iframe height=500 width=500 src="https://github.com/python3xxx/Python-Every-Day/image/python3xxx.gif">
+
+![Image text](https://github.com/python3xxx/Python-Every-Day/image/qr_code.jpg)
+
+
+
+# 目录索引：
+
 [001、Python中的可变对象与不可变对象](#001python中的可变对象与不可变对象)
 
 [002、类的定义和装饰器@classmethod与@staticmethod](#002类的定义和装饰器classmethod与staticmethod)
 
 [003、删除列表中的重复元素](#003删除列表中的重复元素)
+
+[004、Python中的lambda表达式](#004python中的lambda表达式)
+
+[005、Python中的可变参数](#005python中的可变参数)
+
+[006、Python中的super()用法](#006python中的super用法)
       
       
       
@@ -66,3 +84,104 @@ for i in a:
 
 print(b) # [1, 2, 3, 7, 9, 5]
 ```
+
+## 004、Python中的lambda表达式
+
+lambda又称为匿名函数，可以不再去定义函数，使代码更加简洁。
+```python
+def m(x):
+    return x ** 2
+print(m(2))
+# 等同于函数m()
+m1 = lambda x: x ** 2
+print(m1(2))
+```
+更多用法，请参考此文：https://mp.weixin.qq.com/s/CsBpTh0cDyyOT0BZ5cUHwg
+
+
+## 005、Python中的可变参数
+
+可变参数的形式有
+
+- *args  : 元组类型参数
+```python
+def fun_arr(name, *args):
+    print(name)
+    print(args)
+
+if __name__ == '__main__':
+    fun_arr('tom')  # 输出 tom 、()
+    # tom
+    # (20, 'man', '篮球', 'pythoner', '17766666666')
+    fun_arr('tom', 20, 'man', '篮球', 'pythoner', '17766666666')
+```
+
+- **kwargs ：字典类型参数
+```python
+def fun_dict(**kwargs):
+    for k, v in kwargs.items():
+        print(k, v)
+    # 也可通过get的方式取参数的值
+    # my name is tom i'am 18 years old, my phone number is 17766666666
+    print("my name is %s i'am %s years old, my phone number is %s"
+          % (kwargs.get('name'), kwargs.get('age'), kwargs.get('mobile')))
+
+if __name__ == '__main__':
+    fun_dict(name='tom', age=18, mobile='17766666666')
+```
+
+可变参数允许多个任意参数，也允许不传参数。
+
+两个可变参数同时存在是，一定要将 *参数 放在 **参数 之前！！！否则编译错误。
+
+通常情况下，都是将可变参数写在最后面。
+
+> 如果写在前面则会将后面的参数也会收集到列表中。如果将可变参数写在前面，则需要指定后面的参数名
+
+## 006、Python中的super()用法
+
+super()是Python中内置的一个函数，用于调用父类的方法。
+```python
+class A():
+    def eat(self):
+        print('i eat food')
+
+class B(A):
+    def run(self):
+        print('i can run')
+
+b = B()
+# 调用父类的eat
+b.eat() # i eat food
+```
+
+ **如果一个子类继承了两个父类，并且父类中的方法名相同。那究竟会调用哪个类呢？**
+ 
+ 这个问题可以通过类的内置属性 __mro__ 去查看调用顺序。这个方法主要是在多继承时判断方法、属性的调用路径。
+ ```python
+class A:
+    num = 1
+    def method(self):
+        print('A ..method')
+
+class B:
+    num = 2
+    def method(self):
+        print('B .. method')
+
+
+class C(A, B):
+    num = 3
+    pass
+
+if __name__ == '__main__':
+    c = C()
+    print(C.__mro__)  # (<class '__main__.C'>, <class '__main__.A'>, <class '__main__.B'>, <class 'object'>)
+    print(c.num)  #  3
+    c.method()  # A ..method
+```
+如上，C.__mro__ 打印结果可以执行顺序为 C -> A - >B
+
+因此print(c.num)。因为c中有num属性，所以会打印3.
+
+执行c.method时 。因为c中没有method属性，会去A中查找，则输出 A..method。
