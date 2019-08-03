@@ -24,6 +24,11 @@
 [007、Python中的深浅拷贝](#007python中的深浅拷贝)
 
 [008、Python中文件的读取](#008python中文件的读取)
+
+[009、is 与 == 的区别](#009is-与--的区别)
+
+[010、\xs和.format的主要区别是什么](#010s和format的主要区别是什么)
+
       
       
  --
@@ -352,4 +357,56 @@ with open('古诗', 'r', encoding='utf-8') as file:
     print(lines)
     for i in lines:
         print(i.strip())
+```
+
+## 009、is 与 == 的区别
+
+- is：判断两个变量的引用是否相等，值相同，引用不一定相同。
+
+- ==：判断两个变量的值是否相等，如果引用相同，则值一定相同
+
+> 对于整数来说，如果是在[-5，256]之间的整数来说，他们的引用也是相同的，如果不在这个范围则会重新分配内存，引用自然就不同了。
+
+注：在Pycharm中，对Python解释器进行了优化，如果超过这个范围 a is b仍然为True。
+下方示例代码，为终端运行
+``` 
+>>> a = -5
+>>> b = -5
+>>> print(a is b)
+True
+>>> a = -6
+>>> b = -6
+>>> print(a is b)
+False
+>>> a = 256
+>>> b = 256
+>>> print(a is b)
+True
+>>> a = 266
+>>> b = 266
+>>> print(a is b)
+False
+>>> a = 6.666
+>>> b = 6.666
+>>> print(a is b)
+False
+```
+
+## 010、%s和.format的主要区别是什么
+
+%s用法，代表一个参数，写多少个%s，后面的tuple就要有多少个元素，切按照顺序一一对应
+```python
+# my name is tom i am 19 years old
+print('my name is %s i am %d years old' % ('tom', 19))
+```
+
+format用法：format用{}的形式表示，对顺序没有严格要求
+```python
+# my name is tom i am 19 years old
+print('my name is {} i am {} years old'.format('tom', 19))
+# my name is tom i am 19 years old
+print('my name is {1} i am {0} years old'.format(19, 'tom'))
+
+# hello, world, hello
+print('{0}, {1}, {0}'.format('hello', 'world'))
 ```
