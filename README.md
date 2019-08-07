@@ -27,7 +27,13 @@
 
 [009、is 与 == 的区别](#009is-与--的区别)
 
-[010、\xs和.format的主要区别是什么](#010s和format的主要区别是什么)
+[010、xs和.format的主要区别是什么](#010s和format的主要区别是什么)
+
+[011、列表和元组有哪些区别](#011列表和元组有哪些区别)
+
+[012、解释一下Python中的三元运算](#012解释一下python中的三元运算)
+
+[013、join() 和 split() 函数](#013join-和-split-函数)
 
       
       
@@ -409,4 +415,46 @@ print('my name is {1} i am {0} years old'.format(19, 'tom'))
 
 # hello, world, hello
 print('{0}, {1}, {0}'.format('hello', 'world'))
+```
+
+
+## 011、列表和元组有哪些区别
+
+二者的主要区别是列表是可变的，而元组是不可变的。举个例子，如下所示：
+```python
+arr = ['a', 'b', 'c']
+tuple_arr = ('a', 'b', 'c')
+
+arr[1] = 'z'
+print(arr)  # ['a', 'z', 'c']
+tuple_arr[1] = 'z'  # 报错
+```
+当执行最后一行时报错，TypeError: 'tuple' object does not support item assignment
+
+## 012、解释一下Python中的三元运算
+
+python没有其他语言的三元表达式，在python中只有类似的替代办法。
+```python
+def fun(a: int, b: int):
+    return 'a' if a > b else 'b'
+
+print(fun(1, 5)) # b
+print(fun(5, 1)) # a
+```
+如上函数fun意思为，当a > b 返回a，否则返回b
+
+## 013、join() 和 split() 函数
+
+**join()** 将指定字符添加入字符串中
+```python
+print(','.join('abcd')) # a,b,c,d
+print(','.join(['a', 'b', 'c', 'd'])) # a,b,c,d
+```
+
+**split** 将字符串分割成列表
+```python
+temp = 'a,b,c,d'
+temp_2 = 'a-b-c-d'
+print(temp.split(',')) # ['a', 'b', 'c', 'd']
+print(temp_2.split('-')) # ['a', 'b', 'c', 'd']
 ```
