@@ -35,6 +35,13 @@
 
 [013、join() 和 split() 函数](#013join-和-split-函数)
 
+[014、一行代码求 1   2   3   ..   100的和](#014一行代码求-1--2--3----100的和)
+
+[015、怎么样合并两个字典](#015怎么样合并两个字典)
+
+[016、Python中的数据类型有哪些](#016python中的数据类型有哪些)
+
+[017、读写文件时，open与with open .. as的区别](#017读写文件时open与with-open--as的区别)
       
       
  --
@@ -458,3 +465,53 @@ temp_2 = 'a-b-c-d'
 print(temp.split(',')) # ['a', 'b', 'c', 'd']
 print(temp_2.split('-')) # ['a', 'b', 'c', 'd']
 ```
+
+## 014、一行代码求 1 + 2 + 3 + .. + 100的和
+```python
+temp = sum(range(1, 101))
+print(temp) # 5050
+```
+
+## 015、怎么样合并两个字典
+```python
+dict_1 = {'a': 1, 'b': 2}
+dict_2 = {'c': 3, 'd': 5}
+
+"""
+方式一
+"""
+print(dict(dict_1, **dict_2))  # {'a': 1, 'b': 2, 'c': 3, 'd': 5}
+
+"""
+方式二
+"""
+dict_1.update(dict_2)
+print(dict_1)
+
+
+"""
+方式三
+"""
+for k, v in dict_1.items():
+    dict_2[k] = v
+
+print(dict_2)
+```
+
+## 016、Python中的数据类型有哪些
+
+- 数字 (Number)
+- 字符串 (str)
+- 列表 (list)
+- 字典 (dict)
+- 元组 (tuple)
+- 布尔 (Boolean)
+- 集合 (set)
+
+## 017、读写文件时，open与with open .. as的区别
+
+使用open时，处理结束时，要释放资源。即f.close();在使用open打开文件时， open('text.txt') 如果文件不存在，则会抛出异常。这样读取文件所占用的资源就无法及时被释放。
+因此通常配合try..except..finally 使用。
+而with open 则不再需要我们去执行close
+
+## 018、
