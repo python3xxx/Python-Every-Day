@@ -42,6 +42,12 @@
 [016、Python中的数据类型有哪些](#016python中的数据类型有哪些)
 
 [017、读写文件时，open与with...open .. as的区别](#017读写文件时open与with-open--as的区别)
+
+[018、filter方法求出列表所有奇数并构造新列表](#018filter方法求出列表所有奇数并构造新列表)
+
+[019、列表推导式求列表所有奇数并构造新列表](#019列表推导式求列表所有奇数并构造新列表)
+
+[020、抛出自定义异常](#020抛出自定义异常)
       
       
  --
@@ -514,4 +520,37 @@ print(dict_2)
 因此通常配合try..except..finally 使用。
 而with open 则不再需要我们去执行close
 
-## 018、
+## 018、filter方法求出列表所有奇数并构造新列表
+
+filter() 函数用于过滤序列，过滤掉不符合条件的元素，返回由符合条件元素组成的新列表。该接收两个参数，第一个为函数，第二个为序列，序列的每个元素作为参数传递给函数进行判，然后返回 True 或 False，最后将返回 True 的元素放到新列表
+```python
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+def func(a):
+    return a % 2 == 1
+
+new_list = filter(func, a)
+new_list = [i for i in new_list]
+print(new_list) # [1, 3, 5, 7, 9]
+
+```
+
+## 019、列表推导式求列表所有奇数并构造新列表
+```python
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+new_list = [i for i in a if i % 2 == 1]
+print(new_list)
+```
+
+
+## 020、抛出自定义异常
+当程序出现错误，python会自动引发异常，也可以通过raise显示地引发.
+```python
+def fn():
+    for i in range(10):
+        if i > 5:
+            raise Exception('数字大小不能超过5')
+
+fn()
+```
