@@ -58,6 +58,26 @@
 [024、[[1,2],[3,4],[5,6]] 用一行代码展开该列表，得出[1,2,3,4,5,6]](#024123456-用一行代码展开该列表得出123456)
 
 [025、如何打乱列表的顺序？](#025如何打乱列表的顺序)
+
+[026、什么是PEP8](#026什么是pep8)
+
+[027、如何将两个列表转换成字典，如['a', 'b', 'c'], [1, 2, 3] 转换成{'a': 1, 'b' : 2, 'c': 3}](#027如何将两个列表转换成字典如a-b-c-1-2-3-转换成a-1-b--2-c-3)
+
+[028、Python中十进制、十六进制、字符串、字节串之间的转换](#028python中十进制十六进制字符串字节串之间的转换)
+
+[029、.pyc 与 .py文件有什么区别](#029pyc-与-py文件有什么区别)
+
+[030、Python中pass、continue、break、return的区别](#030python中passcontinuebreakreturn的区别)
+
+[031、python中的异常处理模块](#031python中的异常处理模块)
+
+[032、python中有哪些标准异常类](#032python中有哪些标准异常类)
+
+[033、列出Python中的几个魔法方法，并简述用途](#033列出python中的几个魔法方法并简述用途)
+
+[034、sort和sorted的区别](#034sort和sorted的区别)
+
+[035、s="info:xiaoZhang 33 shandong",用正则切分字符串输出['info', 'xiaoZhang', '33', 'shandong']](#035sinfoxiaozhang-33-shandong用正则切分字符串输出info-xiaozhang-33-shandong)
       
       
  --
@@ -603,7 +623,7 @@ print(v)
 del 不像pop那样有返回值。
 ```python
 temp = {'a': 1, 'b': 2, 'c': 3}
-
+``
 
 del temp['a']
 print(temp) # {'b': 2, 'c': 3}
@@ -629,3 +649,182 @@ random.shuffle(a) # 不会生成新的对象，改变的是a
 print(a) # ['e', 'a', 'b', 'c', 'd']
 ```
 
+## 026、什么是PEP8
+
+PEP8是Python官方推出的编码约定，主要是为了保证Python编码风格的统一。提高代码的可读性
+比如：
+- 缩进。4个空格的缩进（编辑器都可以完成此功能），不使用Tap，更不能混合使用Tap和空格。
+
+- 每行最大长度79，换行可以使用反斜杠，最好使用圆括号。换行点要在操作符的后边敲回车。
+
+- 类和top-level函数定义之间空两行；类中的方法定义之间空一行；函数内逻辑无关段落之间空一行；其他地方尽量不要再空行。
+
+- 模块导入的顺序：按标准、三方和自己编写顺序依次导入，之间空一行。
+
+- 不要在一句import中多个库，比如import os, sys不推荐
+
+- 避免不必要的空格
+
+- 注释必须要有
+
+- 函数命名要遵循规范
+
+- 尽可能使用‘is’‘is not’取代‘==’，比如if x is not None 要优于if x。
+
+- 使用基于类的异常，每个模块或包都有自己的异常类，此异常类继承自Exception。
+- 异常中try的代码尽可能少。
+
+## 027、如何将两个列表转换成字典，如['a', 'b', 'c'], [1, 2, 3] 转换成{'a': 1, 'b' : 2, 'c': 3}
+```python
+a1 = ['a', 'b', 'c']
+a2 = [1, 2, 3]
+print(dict(zip(a1, a2)))
+```
+
+## 028、Python中十进制、十六进制、字符串、字节串之间的转换
+
+参考阅读：https://mp.weixin.qq.com/s/9Aj6VhI503Zdpmr8uRw3sg
+
+## 029、.pyc 与 .py文件有什么区别
+
+在Python程序中，是把原始程序代码放在.py文件里，而Python会在执行.py文件的时候。将.py形式的程序编译成中间式文件（byte-compiled）的.pyc文件，这么做的目的就是为了加快下次执行文件的速度。
+
+所以，在我们运行python文件的时候，就会自动首先查看是否具有.pyc文件，如果有的话，而且.py文件的修改时间和.pyc的修改时间一样，就会读取.pyc文件，否则，Python就会读原来的.py文件。
+
+其实并不是所有的.py文件在与运行的时候都会产生.pyc文件，只有在import相应的.py文件的时候，才会生成相应的.pyc文件
+
+## 030、Python中pass、continue、break、return的区别
+- pass： 不做任何事情，只是充当占位符的作用
+- continue： 常用作循环中，表示跳出当前循环，执行下一次循环
+- break： 常用作循环中，表示终止此次循环
+- return：结束函数的运行，并返回结果
+
+## 031、python中的异常处理模块
+
+当程序出现错误，会终止运行。为了能够让程序依旧可以正常执行，我们引入了异常处理模块，
+即：try...except...  其他的还有try..except..else 或try..except..finally
+
+- try...except..  捕获异常，使程序不会被终止
+
+```python
+try:
+    num = 10 / 0
+except Exception as e:
+    print('分母不能为0')
+    # raise e # 可以选择将异常抛出
+```
+
+- try...except...else  如果没有发生异常，则执行else中的内容
+```python
+try:
+    num = 0 / 10
+except Exception as e:
+    print('分母不能为0')
+    # raise e # 可以选择将异常抛出
+else:
+    print('没有发生异常..')
+```
+
+- try...except...finally  不管有没有发生异常，都会执行finally中的内容
+```python
+try:
+    num = 0 / 10
+except Exception as e:
+    print('分母不能为0')
+    # raise e # 可以选择将异常抛出
+finally:
+    print('无论如何都会执行我')
+```
+
+
+## 032、python中有哪些标准异常类
+
+| 异常名称 | 描述 |
+|-----|-----|
+| BaseException	| 所有异常的基类 |
+| SystemExit	| 解释器请求退出 |
+| KeyboardInterrupt	| 用户中断执行(通常是输入^C) |
+| Exception	| 常规错误的基类 |
+| StopIteration	| 迭代器没有更多的值 |
+| GeneratorExit	| 生成器(generator)发生异常来通知退出 |
+| SystemExit	| Python 解释器请求退出 |
+| StandardError	| 所有的内建标准异常的基类 |
+| ArithmeticError	| 所有数值计算错误的基类 |
+| FloatingPointError	| 浮点计算错误 |
+| OverflowError	| 数值运算超出最大限制 |
+| ZeroDivisionError	| 除(或取模)零 (所有数据类型) |
+| AssertionError	| 断言语句失败 |
+| AttributeError	| 对象没有这个属性 |
+| EOFError	| 没有内建输入,到达EOF 标记 |
+| EnvironmentError	| 操作系统错误的基类 |
+| IOError	| 输入/输出操作失败 |
+| OSError	| 操作系统错误 |
+| WindowsError	| 系统调用失败 |
+| ImportError	| 导入模块/对象失败 |
+| KeyboardInterrupt	| 用户中断执行(通常是输入^C) |
+| LookupError	| 无效数据查询的基类 |
+| IndexError	| 序列中没有没有此索引(index) |
+| KeyError	| 映射中没有这个键 |
+| MemoryError	| 内存溢出错误(对于Python 解释器不是致命的) |
+| NameError	| 未声明/初始化对象 (没有属性) |
+| UnboundLocalError	| 访问未初始化的本地变量 |
+| ReferenceError	| 弱引用(Weak reference)试图访问已经垃圾回收了的对象 |
+| RuntimeError	| 一般的运行时错误 |
+| NotImplementedError	| 尚未实现的方法 |
+| SyntaxError	| Python 语法错误 |
+| IndentationError	| 缩进错误 |
+| TabError	| Tab 和空格混用 |
+| SystemError	| 一般的解释器系统错误 |
+| TypeError	| 对类型无效的操作 |
+| ValueError	| 传入无效的参数 |
+| UnicodeError	| Unicode 相关的错误 |
+| UnicodeDecodeError	| Unicode 解码时的错误 |
+| UnicodeEncodeError	| Unicode 编码时错误 |
+| UnicodeTranslateError	| Unicode 转换时错误 |
+| Warning	| 警告的基类 |
+| DeprecationWarning	| 关于被弃用的特征的警告 |
+| FutureWarning	| 关于构造将来语义会有改变的警告 |
+| OverflowWarning	| 旧的关于自动提升为长整型(long)的警告 |
+| PendingDeprecationWarning	| 关于特性将会被废弃的警告 |
+| RuntimeWarning	| 可疑的运行时行为(runtime behavior)的警告 |
+| SyntaxWarning	| 可疑的语法的警告 |
+| UserWarning	| 用户代码生成的警告 |
+
+
+## 033、列出Python中的几个魔法方法，并简述用途
+ __ init__:对象初始化方法
+
+ __ new__:创建对象时候执行的方法，单列模式会用到
+
+ __ str__:当使用print输出对象的时候，只要自己定义了__str__(self)方法，那么就会打印从在这个方法中return的数据
+
+ __ del__:删除对象执行的方法
+
+
+## 034、sort和sorted的区别
+- sort:在原有列表的基础上进行排序，无返回值
+```python
+arr = [-2, 1, 0, 7, -7, 4]
+arr.sort()
+print(arr)
+```
+
+-sorted: 排序会生成一个新的列表
+```python
+arr = [-2, 1, 0, 7, -7, 4]
+arr_sort = sorted(arr)
+print(arr) # [-2, 1, 0, 7, -7, 4]
+print(arr_sort) # [-7, -2, 0, 1, 4, 7]
+```
+
+> 他们都有一个参数reverse,默认False，代表升序排序sorted(arr, reverse=False)
+
+## 035、s="info:xiaoZhang 33 shandong",用正则切分字符串输出['info', 'xiaoZhang', '33', 'shandong']
+
+|表示或，根据冒号或者空格切分
+```python
+import re
+s = 'info:xiaoZhang 33 shandong'
+result = re.split(r':| ', s)
+print(result) # ['info', 'xiaoZhang', '33', 'shandong']
+```
