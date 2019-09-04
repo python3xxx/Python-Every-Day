@@ -78,6 +78,12 @@
 [034、sort和sorted的区别](#034sort和sorted的区别)
 
 [035、s="info:xiaoZhang 33 shandong",用正则切分字符串输出['info', 'xiaoZhang', '33', 'shandong']](#035sinfoxiaozhang-33-shandong用正则切分字符串输出info-xiaozhang-33-shandong)
+
+[036、怎么样在函数内修改全局变量](#036怎么样在函数内修改全局变量)
+
+[037、简单描述一下你常用的五个标准库](#037简单描述一下你常用的五个标准库)
+
+[038、简述一下Python中的GIL](#038简述一下python中的gil)
       
       
  --
@@ -828,3 +834,35 @@ s = 'info:xiaoZhang 33 shandong'
 result = re.split(r':| ', s)
 print(result) # ['info', 'xiaoZhang', '33', 'shandong']
 ```
+
+## 036、怎么样在函数内修改全局变量
+
+修改全局变量的值可以使用global关键字。
+global语句的使用方法很简单，基本格式是：关键字global，后跟一个或多个变量名
+```python
+x = 10
+
+def func():
+    global x
+    x = 5
+    print(x)
+
+func()
+```
+
+## 037、简单描述一下你常用的五个标准库
+- os：提供了不少与操作系统相关联的函数
+
+- sys:   通常用于命令行参数
+
+- re:   正则匹配
+
+- math: 数学运算
+
+- datetime:处理日期时间
+
+## 038、简述一下Python中的GIL
+GIL 是python的全局解释器锁，同一进程中假如有多个线程运行，一个线程在运行python程序的时候会霸占python解释器（加了一把锁即GIL），使该进程内的其他线程无法运行，等该线程运行完后其他线程才能运行。如果线程运行过程中遇到耗时操作，则解释器锁解开，使其他线程运行。所以在多线程中，线程的运行仍是有先后顺序的，并不是同时进行。
+
+多进程中因为每个进程都能被系统分配资源，相当于每个进程有了一个python解释器，所以多进程可以实现多个进程的同时运行，缺点是进程系统资源开销大
+
